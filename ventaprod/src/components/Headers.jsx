@@ -2,7 +2,7 @@ import React from "react";
 export const Headers = () => {
     return (
         <header>
-            <h1>Tienda de Libros</h1>
+            <h1>Tienda de Software</h1>
             <div className="container-icon">
                 <div className="container-cart-icon">
                     <img src="https://w7.pngwing.com/pngs/275/763/png-transparent-cart-shopping-supermarket-shoppingcart-ecommerce-e-commerce-shopping-trolley-caddy.png" alt="carrito" className="icon-cart" />
@@ -18,7 +18,8 @@ export const Headers = () => {
                                 <p className="titulo-producto-carrito">Don Quijote</p>
                                 <span className="precio-producto-carrito">$80</span>
                             </div>
-                            <img src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-iconpng.png"  alt="cerrar" className="icon-close" />
+                            <img
+                                src="https://static.vecteezy.com/system/resources/previews/018/887/462/original/signs-close-iconpng.png"  alt="cerrar" className="icon-close" />
                         </div>
                     </div>
                     <div className="cart-total hidden">

@@ -26,6 +26,7 @@ export default function Home() {
         countProducts={countProducts}
         setCountProducts={setCountProducts}
       />
+      
     </div>
   );
 }

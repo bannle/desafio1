@@ -1,5 +1,6 @@
-"use client";
+"use client"
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const Headers = ({
     allProducts,
@@ -9,9 +10,8 @@ export const Headers = ({
     setCountProducts,
     setTotal,
 }) => {
+    const router = useRouter();
     const [active, setActive] = useState(false);
-    const [showInvoice, setShowInvoice] = useState(false);
-
     const onDeleteProduct = (product) => {
         if (window.confirm(`¿Estás seguro de que deseas eliminar ${product.nombre}?`)) {
             const results = allProducts.filter((item) => item.id !== product.id);
@@ -35,8 +35,9 @@ export const Headers = ({
             alert("El carrito está vacío");
             return;
         }
-        setShowInvoice(true);
-        setActive(false);
+        localStorage.setItem("productos", JSON.stringify(allProducts));
+        localStorage.setItem("total", JSON.stringify(total));
+        router.push("/factura");
     };
 
     return (
@@ -90,7 +91,7 @@ export const Headers = ({
 
                             <div className="text-center mt-3">
                                 <button className="btn-clear-all" onClick={handlePurchase}>
-                                    Comprar
+                                    Pagar
                                 </button>
                                 <button className='btn-clear-all' onClick={onCleanCart}>
                                     Vaciar Carrito
@@ -102,24 +103,6 @@ export const Headers = ({
                     )}
                 </div>
             </div>
-
-            {showInvoice && (
-                <div className="container py-4 border border-dark rounded bg-light mt-4">
-                    <h2 className="text-center mb-3">Factura</h2>
-                    {allProducts.map((product) => (
-                        <div key={product.id} className="d-flex justify-content-between mb-2">
-                            <span>{product.nombre} x{product.cantidad}</span>
-                            <span>${product.precio * product.cantidad}</span>
-                        </div>
-                    ))}
-                    <div className="text-end mt-3">
-                        <h3>Total: ${total}</h3>
-                    </div>
-                    <button className="btn btn-primary d-block mx-auto mt-3" onClick={() => window.print()}>
-                        Imprimir Factura 🖨️
-                    </button>
-                </div>
-            )}
         </header>
     );
 };
